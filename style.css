@@ -15,11 +15,17 @@ h1 {
 #grid {
     border-collapse: collapse;
     border-spacing: 0;
-    margin: auto;
+    margin: 1em auto 0;
 }
 
     #grid td {
         border: 1px solid gray;
+    }
+
+    @keyframes birth {
+        50% {
+            box-shadow: 0 0 0 99px green inset;
+        }
     }
 
     #grid input[type="checkbox"] {
@@ -34,6 +40,39 @@ h1 {
     }
 
         #grid input[type="checkbox"]:checked {
-            background: black;
+            animation: birth 1s;
             box-shadow: 0 0 0 99px black inset; // Firefox hack
         }
+
+button,
+.button {
+    background: linear-gradient(hsla(0,0%,100%,.3), hsla(0,0%,100%,0)) hsl(80,80%,35%);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3em;
+    box-shadow: 0 1px 0 hsla(0, 0%, 100%, .7) inset, 0 .15em .1em -.1em rgba(0,0,0,.3); 
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: bold;
+    outline: none;
+    padding: .4em .6em;
+    text-shadow: 0 -.05em .05em rgba(0,0,0,.3);
+}
+
+    button:enabled:active,
+    .button:active,
+    input[type="checkbox"]:checked + label.button {
+        background-image: none;
+        box-shadow: 0 .1em .3em rgba(0,0,0,.5) inset;
+    }
+
+    button:disabled {
+        background-color: hsl(80, 20%, 40%);
+        cursor: not-allowed;
+    }
+
+#autoplay {
+    /* Next two lines hide the checkbox, but it can still be interacted with (as opposed to when using display: none or visibility: hidden */
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
